@@ -10,22 +10,7 @@ const Main = () => {
 
     /**Lanza una acción */
     store.dispatch({ type: 'INCREMENT' })
-
     
-
-    const render = () =>{
-        document.body.innerHTML= "Hello " + store.getState()
-    }
-
-    render();
-
-    /**Función que se ejecutará cada vez que se active un dispatch */
-    store.subscribe(render)
-
-    document.addEventListener('click', ()=>{
-        store.dispatch({ type: 'INCREMENT' })
-    })
-
     
 
     return(
