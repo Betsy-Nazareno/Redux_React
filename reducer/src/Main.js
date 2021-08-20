@@ -11,7 +11,9 @@ const Main = () => {
     /**Lanza una acción */
     store.dispatch({ type: 'INCREMENT' })
     
-    
+    store.subscribe(()=>{
+        document.getElementById('message').innerHTML= 'state: '+ store.getState()
+    })
 
     return(
         <div>
