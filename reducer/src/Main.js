@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStore } from 'redux';
-import counter from './estado';
+import {counter} from './estado';
 import CounterView from './Counter';
 
 const Main = () => {

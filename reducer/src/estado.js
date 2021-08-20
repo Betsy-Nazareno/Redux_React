@@ -15,5 +15,23 @@ const counter = (state = 0, action) => {
     
 }
 
+const addCounter = (lista) =>{
+    return [...lista, 0];
 
-module.exports = counter
+}
+
+const removeCounter = (index, lista) =>{
+    return [
+        ...lista.slice(0, index),
+        ...lista.slice(index+1)
+    ]
+}
+
+const incrementCounter = (index, lista) => {
+    return [
+        ...lista.slice(0, index),
+        lista[index] + 1,
+        ...lista.slice(index+1)
+    ]
+}
+module.exports = {counter, addCounter, removeCounter, incrementCounter}
