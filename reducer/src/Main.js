@@ -1,31 +1,67 @@
 import React from 'react'
-import { createStore } from 'redux';
-import {counter} from './estado';
-import CounterView from './Counter';
+import { combineReducers, createStore } from 'redux';
+import { visibilityFilter, todo } from './todoEstado';
 
 const Main = () => {
-    
-    /**Enlaza la funcion counter al store de redux */
-    const store = createStore(counter);
 
-    /**Lanza una acción */
-    store.dispatch({ type: 'INCREMENT' })
-    
-    store.subscribe(()=>{
-        document.getElementById('message').innerHTML= 'state: '+ store.getState()
-    })
+    /**Combina reducers: Si te das cuenta 'todo' tiene un switch case de acuerdo a las acciones 
+     * que tomará efecto, así mismo VisibilityFilter, solo que ahora combinamos estos dos y como resyltado tenemos
+     * un solo objeto
+     */
+    const todoApp = combineReducers({todo, visibilityFilter})
 
-    return(
+    const store = createStore(todoApp)
+
+   
+
+
+    console.log('Initial state:');
+    console.log(store.getState());
+    console.log('--------------');
+
+    console.log('Dispatching ADD_TODO.')
+    store.dispatch({
+        type: 'ADD_TODO',
+        id: 0,
+        text: 'Learn Redux'
+    });
+    console.log('Current state:');
+    console.log(store.getState());
+    console.log('--------------');
+
+    console.log('Dispatching ADD_TODO.');
+    store.dispatch({
+        type: 'ADD_TODO',
+        id: 1,
+        text: 'Go shopping'
+    });
+    console.log('Current state:');
+    console.log(store.getState());
+    console.log('--------------');
+
+    console.log('Dispatching TOGGLE_TODO.');
+    store.dispatch({
+        type: 'TOGGLE_TODO',
+        id: 0
+    });
+    console.log('Current state:');
+    console.log(store.getState());
+    console.log('--------------');
+
+    console.log('Dispatching SET_VISIBILITY_FILTER');
+    store.dispatch({
+        type: 'SET_VISIBILITY_FILTER',
+        filter: 'SHOW_COMPLETED'
+    });
+    console.log('Current state:');
+    console.log(store.getState());
+    console.log('--------------');
+
+
+
+    return (
         <div>
-            <CounterView 
-                value={store.getState()} 
-                onIncrement= {()=> {
-                    store.dispatch( {type: 'INCREMENT'} )
-                }}
-                onDecrement= {()=> {
-                    store.dispatch( {type: 'DECREMENT'} )
-                }}
-            />
+            Hello world
         </div>
     )
 }
