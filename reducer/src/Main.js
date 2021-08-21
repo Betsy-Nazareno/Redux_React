@@ -1,6 +1,7 @@
 import React from 'react'
 import { combineReducers, createStore } from 'redux';
 import { visibilityFilter, todo } from './todoEstado';
+import TodoApp from './TodoApp';
 
 const Main = () => {
 
@@ -60,9 +61,8 @@ const Main = () => {
 
 
     return (
-        <div>
-            Hello world
-        </div>
+        < TodoApp 
+        store={store}/>
     )
 }
 
